@@ -1,0 +1,21 @@
+service: phrases-api
+
+provider:
+  name: aws
+  runtime: java8
+  stage: ${env:STAGE, "dev"}
+  region: ${env:AWS_DEFAULT_REGION, "ap-northeast-2"}
+
+package:
+  artifact: build/distributions/phrases-api.zip
+
+functions:
+  phrases:
+    handler: io.github.lacti.okt.Handler
+    memorySize: 1024
+    timeout: 30
+    events:
+      - http:
+          method: post
+          path: /phrases
+          cors: true
