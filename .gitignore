@@ -13,7 +13,9 @@
 
 # Serverless directories
 .serverless
+node_modules
 
 # IDE
 .vscode
 .idea
+

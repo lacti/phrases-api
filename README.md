@@ -7,12 +7,20 @@
 - Java 8
 - Gradle 6.5.1
 - [Serverless framework](https://www.serverless.com/)
+- Or NodeJS 12+
 
 ## Deployment
 
 ```bash
 ./gradlew build
 sls deploy
+```
+
+or
+
+```bash
+npm i
+npm run deploy
 ```
 
 ## Usage
@@ -29,6 +37,8 @@ sys	0m0.009s
 ## Caveat
 
 I don't know exactly, but it is **very very slow** at first time. I think it is the cold-start-latency from AWS Lambda Java runtime.
+
+So I add `serverless-plugin-warmup` but I don't know if it is resolved.
 
 ## License
 

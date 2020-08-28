@@ -1,10 +1,26 @@
 service: phrases-api
 
+plugins:
+  - serverless-offline
+  - serverless-plugin-warmup
+  - serverless-prune-plugin
+
 provider:
   name: aws
   runtime: java8
   stage: ${env:STAGE, "dev"}
   region: ${env:AWS_DEFAULT_REGION, "ap-northeast-2"}
+
+custom:
+  prune:
+    automatic: true
+    number: 3
+  warmup:
+    enable: true
+    events:
+      - schedule: 'rate(10 minutes)'
+    payload:
+      body: '다람쥐 헌 쳇바퀴에 타고파'
 
 package:
   artifact: build/distributions/phrases-api.zip
@@ -12,6 +28,7 @@ package:
 functions:
   phrases:
     handler: io.github.lacti.okt.Handler
+    warmup: true
     memorySize: 1024
     timeout: 30
     events:
@@ -19,3 +36,4 @@ functions:
           method: post
           path: /phrases
           cors: true
+

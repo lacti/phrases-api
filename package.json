@@ -1,0 +1,28 @@
+{
+  "name": "phrases-api-serverless",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serverless deployment helper for phrases-api",
+  "scripts": {
+    "build": "./gradlew build",
+    "predeploy": "npm run build && sls package",
+    "deploy": "sls deploy",
+    "status": "sls info"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lacti/phrases-api.git"
+  },
+  "author": "jaeyoung.choi <lactrious@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lacti/phrases-api/issues"
+  },
+  "homepage": "https://github.com/lacti/phrases-api#readme",
+  "devDependencies": {
+    "serverless": "^1.80.0",
+    "serverless-offline": "^6.7.0",
+    "serverless-plugin-warmup": "^4.9.0",
+    "serverless-prune-plugin": "^1.4.3"
+  }
+}
